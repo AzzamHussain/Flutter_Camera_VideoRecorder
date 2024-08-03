@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:video_recorder/pages/camera.dart';
 
 void main() {
@@ -9,11 +10,10 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const HomePage(), // Use a different widget as the home
+      home: const HomePage(), // 
     );
   }
 }
@@ -29,22 +29,35 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
-      body: const Center(
+      body:  Stack(
+        children: [
+          // Background Image
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/splashScreen.png'), // Asset Image
+                fit: BoxFit.cover, // Cover the entire screen
+              ),
+            ),
+          ),
+      const Center(
         child: Text(
-          "Flutter camera and video recording app",
-          style: TextStyle(fontSize: 20),
+          "",
+          style: TextStyle(fontSize: 20,
+          color: Colors.white,
+          fontWeight: FontWeight.bold),
         ),
-      ),
-      floatingActionButton: FloatingActionButton.extended(
+      ),   ],),
+      floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
             context,
             CupertinoPageRoute(builder: (context) => const CameraPage()),
           );
         },
-        label: const Text('Camera'), // Correctly using a Text widget for the label
-        icon: const Icon(Icons.photo_camera_sharp), // Add the icon here
+        child: const Icon(Icons.photo_camera_sharp), 
       ),
     );
   }
